@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Главная страница - Лабораторная работа №1</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #000000;
+        }
+        header {
+            background-color: #0038d1;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 10px;
+        }
+        nav {
+            background-color: #0038d1;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 10px;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        nav a:hover {
+            background-color: #7070c7;
+        }
+        .welcome {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            background-color: #0038d1;
+            color: white;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Лабораторная работа №1</h1>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="index.html">Главная</a></li>
+            <li><a href="cat.html">Обязанности кота</a></li>
+            <li><a href="city.html">Город Молодечно</a></li>
+        </ul>
+    </nav>
+    
+    <main>
+        <div class="welcome">
+            <h2>Добро пожаловать!</h2>
+            <p>Используйте навигационное меню выше для перехода между разделами:</p>
+            
+            <div style="display: flex; justify-content: center; gap: 30px; margin-top: 30px;">
+                <div style="background: #e8f4f8; padding: 20px; border-radius: 10px; width: 200px;">
+                    <h3>Обязанности кота</h3>
+                    <p>Узнайте о важных обязанностях каждого домашнего кота</p>
+                    <a href="cat.html" style="color: #7070c7;">Перейти →</a>
+                </div>
+                
+                <div style="background: #e8f4f8; padding: 20px; border-radius: 10px; width: 200px;">
+                    <h3>Город Молодечно</h3>
+                    <p>Познакомьтесь с моим родным городом</p>
+                    <a href="city.html" style="color: #7070c7;">Перейти →</a>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <footer>
+        <p>&copy;2025. Лабораторная работа №1. Все права защищены.</p>
+        <p>Студент: Вашемирская А.С. | Группа: УИР-1</p>
+    </footer>
+</body>
+</html>
