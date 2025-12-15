@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Сравнение автомобилей: Lamborghini, Voyah и Jaguar</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a2a3a, #0d1b2a);
+            color: #e0e1dd;
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            padding: 30px 0;
+            margin-bottom: 30px;
+            background: rgba(13, 27, 42, 0.8);
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+            border: 1px solid #415a77;
+            position: relative;
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+            color: #ffffff;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.7);
+        }
+        
+        h2 {
+            font-size: 1.8rem;
+            margin: 25px 0 15px;
+            color: #ffffff;
+            border-bottom: 2px solid #415a77;
+            padding-bottom: 8px;
+        }
+        
+        .intro {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            font-size: 1.2rem;
+            color: #b0bec5;
+        }
+        
+        .table-container {
+            background: rgba(13, 27, 42, 0.8);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+            border: 1px solid #415a77;
+            overflow-x: auto;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        caption {
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #ffffff;
+            text-align: center;
+            caption-side: top;
+        }
+        
+        th, td {
+            border: 1px solid #415a77;
+            padding: 15px;
+            text-align: left;
+        }
+        
+        th {
+            background-color: #1b3a4b;
+            color: #ffffff;
+            font-weight: bold;
+        }
+        
+        tr:nth-child(even) {
+            background-color: rgba(26, 42, 58, 0.5);
+        }
+        
+        tr:hover {
+            background-color: rgba(65, 90, 119, 0.3);
+        }
+        
+        mark {
+            background-color: #8fffc7;
+            color: #0d1b2a;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        
+        .details-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        
+        .car-details {
+            flex: 1;
+            min-width: 300px;
+            background: rgba(13, 27, 42, 0.8);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+            border: 1px solid #415a77;
+        }
+        
+        .car-details h3 {
+            color: #ffffff;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+            text-align: center;
+        }
+        
+        details {
+            margin: 15px 0;
+            background: rgba(26, 42, 58, 0.7);
+            border-radius: 8px;
+            padding: 10px;
+        }
+        
+        summary {
+            font-weight: bold;
+            cursor: pointer;
+            padding: 10px;
+            color: #ffffff;
+        }
+        
+        details p {
+            padding: 15px;
+            border-top: 1px solid #415a77;
+            margin-top: 10px;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 25px;
+            margin-top: 40px;
+            background: rgba(13, 27, 42, 0.8);
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+            border: 1px solid #415a77;
+            color: #b0bec5;
+        }
+        
+        .highlight {
+            color: #ffffff;
+            font-weight: bold;
+        }
+        
+        .nav-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #576266, #13103d);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+            border: 2px solid #ffffff;
+        }
+        
+        .nav-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 77, 230, 0.6);
+        }
+        
+        .nav-btn:active {
+            transform: translateY(1px);
+            box-shadow: 0 2px 10px rgba(0, 77, 230, 0.6);
+        }
+        
+        .btn-container {
+            text-align: center;
+            margin: 30px 0;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .characteristic {
+            font-weight: bold;
+        }
+        
+        .model-name {
+            font-weight: bold;
+        }
+        
+        .html-btn {
+            background: linear-gradient(135deg, #2d5a27, #1a3a14);
+        }
+        
+        .html-btn:hover {
+            background: linear-gradient(135deg, #3a6b33, #274d20);
+            box-shadow: 0 6px 20px rgba(46, 204, 113, 0.4);
+        }
+        
+        @media (max-width: 768px) {
+            .details-container {
+                flex-direction: column;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .table-container {
+                padding: 15px;
+            }
+            
+            .nav-btn {
+                padding: 10px 20px;
+                font-size: 1rem;
+            }
+            
+            .btn-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn-container a {
+                width: 90%;
+                max-width: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Сравнение автомобилей премиум-класса</h1>
+            <p class="intro">Детальный анализ характеристик автомобилей Lamborghini, Voyah и Jaguar</p>
+            
+            <div class="btn-container">
+                <a href="#chevrolet-section" class="nav-btn">
+                    Сравнить Chevrolet
+                </a>
+                <a href="questions.html" class="nav-btn html-btn">
+                    Контрольные вопросы
+                </a>
+            </div>
+        </header>
+        
+        <div class="table-container">
+            <table>
+                <caption>Сравнительная таблица характеристик автомобилей</caption>
+                <thead>
+                    <tr>
+                        <th>Характеристика</th>
+                        <th>Lamborghini</th>
+                        <th>Voyah</th>
+                        <th>Jaguar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="characteristic">Самая дорогая модель</td>
+                        <td><mark><span class="model-name">Aventador SVJ</span> - $517,770</mark></td>
+                        <td><span class="model-name">Free</span> - $68,000</td>
+                        <td><span class="model-name">F-Type R</span> - $104,000</td>
+                    </tr>
+                    <tr>
+                        <td class="characteristic">Самая дешёвая модель</td>
+                        <td><span class="model-name">Huracán EVO</span> - $261,274</td>
+                        <td><mark><span class="model-name">Dream</span> - $54,000</mark></td>
+                        <td><span class="model-name">E-Pace</span> - $44,395</td>
+                    </tr>
+                    <tr>
+                        <td class="characteristic">Двигатель</td>
+                        <td>6.5L V12 (Aventador)</td>
+                        <td>Электрический (Free)</td>
+                        <td>2.0L I4 Turbo (E-Pace)</td>
+                    </tr>
+                    <tr>
+                        <td class="characteristic">Расход топлива</td>
+                        <td>22.4 л/100 км</td>
+                        <td>21.5 кВт·ч/100 км</td>
+                        <td>9.5 л/100 км</td>
+                    </tr>
+                    <tr>
+                        <td class="characteristic">Скорость (разгон 0-100 км/ч)</td>
+                        <td><mark>2.8 с (Aventador)</mark></td>
+                        <td>4.5 с (Free)</td>
+                        <td>5.7 с (E-Pace)</td>
+                    </tr>
+                    <tr>
+                        <td class="characteristic">Наличие экологических сертификатов</td>
+                        <td>Euro 6</td>
+                        <td><mark>Zero Emission</mark></td>
+                        <td>Euro 6</td>
+                    </tr>
+                    <tr>
+                        <td class="characteristic">Гарантийный срок</td>
+                        <td>3 года / неограниченный пробег</td>
+                        <td><mark>8 лет / 160,000 км</mark></td>
+                        <td>5 лет / 100,000 км</td>
+                    </tr>
+                    <tr>
+                        <td class="characteristic">Максимальная скорость</td>
+                        <td><mark>350 км/ч (Aventador)</mark></td>
+                        <td>200 км/ч (Free)</td>
+                        <td>240 км/ч (F-Type)</td>
+                    </tr>
+                    <tr>
+                        <td class="characteristic">Тип КПП</td>
+                        <td>Автоматическая</td>
+                        <td>Автоматическая (вариатор)</td>
+                        <td>Автоматическая</td>
+                    </tr>
+                    <tr>
+                        <td class="characteristic">Количество передач</td>
+                        <td>7</td>
+                        <td>1</td>
+                        <td>8</td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="4" style="text-align: center; font-style: italic;">
+                            *Данные актуальны на 2024 год и могут отличаться в зависимости от региона и конфигурации
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+        
+        <h2>Дополнительная информация о моделях</h2>
+        
+        <div class="details-container">
+            <div class="car-details">
+                <h3>Lamborghini</h3>
+                <details>
+                    <summary>О производителе</summary>
+                    <p>Lamborghini — итальянский производитель спортивных автомобилей, основанный в 1963 году Ферруччо Ламборгини. Компания славится своими высокопроизводительными суперарами с экстравагантным дизайном.</p>
+                </details>
+                
+                <details>
+                    <summary>Ключевые модели</summary>
+                    <p>Флагманская модель Aventador оснащается двигателем V12, в то время как Huracán использует двигатель V10. Обе модели предлагают экстремальную производительность и уникальный дизайн.</p>
+                </details>
+                
+                <details>
+                    <summary>Технологии и инновации</summary>
+                    <p>Lamborghini активно использует карбоновые монококи для снижения веса, систему полного привода и активную аэродинамику для улучшения управляемости на высоких скоростях.</p>
+                </details>
+            </div>
+            
+            <div class="car-details">
+                <h3>Voyah</h3>
+                <details>
+                    <summary>О производителе</summary>
+                    <p>Voyah — это премиальный суббренд китайского автопроизводителя Dongfeng Motor Corporation, специализирующийся на производстве электромобилей и гибридных автомобилей.</p>
+                </details>
+                
+                <details>
+                    <summary>Ключевые модели</summary>
+                    <p>Voyah Free — это полноразмерный электрический SUV, предлагающий роскошный интерьер и передовые технологии. Voyah Dream — флагманский минивэн с гибридной силовой установкой.</p>
+                </details>
+                
+                <details>
+                    <summary>Технологии и инновации</summary>
+                    <p>Voyah использует платформу ESSA для своих электромобилей, которая обеспечивает модульность и высокий уровень производительности. Компания также предлагает систему смены батареи.</p>
+                </details>
+            </div>
+            
+            <div class="car-details">
+                <h3>Jaguar</h3>
+                <details>
+                    <summary>О производителе</summary>
+                    <p>Jaguar — британский производитель автомобилей класса люкс, основанный в 1922 году. Компания известна своими элегантными спортивными седанами и внедорожниками, сочетающими роскошь и производительность.</p>
+                </details>
+                
+                <details>
+                    <summary>Ключевые модели</summary>
+                    <p>Jaguar F-Type — спортивный автомобиль, наследник легендарного E-Type. Линейка внедорожников включает E-Pace, F-Pace и I-Pace — полностью электрическую модель.</p>
+                </details>
+                
+                <details>
+                    <summary>Технологии и инновации</summary>
+                    <p>Jaguar активно развивает электрическую мобильность, о чем свидетельствует модель I-Pace. Компания также предлагает передовые системы помощи водителю и роскошные интерьеры с использованием натуральных материалов.</p>
+                </details>
+            </div>
+        </div>
+        
+        <!-- Секция Chevrolet -->
+        <div id="chevrolet-section" class="table-container">
+            <h2 style="text-align: center;">Сравнение автомобилей Chevrolet</h2>
+            
+            <table>
+                <caption>Сравнительная таблица характеристик автомобилей Chevrolet</caption>
+                <thead>
+                    <tr>
+                        <th>Характеристика</th>
+                        <th><span class="model-name">Chevrolet Camaro</span></th>
+                        <th><span class="model-name">Chevrolet Tahoe</span></th>
+                        <th><span class="model-name">Chevrolet Bolt EV</span></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="characteristic">Тип двигателя</td>
+                        <td>Бензиновый</td>
+                        <td>Бензиновый / Дизельный</td>
+                        <td><mark>Электрический</mark></td>
+                    </tr>
+                    <tr>
+                        <td class="characteristic">Расход топлива</td>
+                        <td>9.8 - 13.0 л/100 км</td>
+                        <td>13.8 - 16.8 л/100 км</td>
+                        <td>17.5 кВт·ч/100 км</td>
+                    </tr>
+                    <tr>
+                        <td class="characteristic">Тип КПП</td>
+                        <td>Механическая / Автоматическая</td>
+                        <td>Автоматическая</td>
+                        <td>Автоматическая</td>
+                    </tr>
+                    <tr>
+                        <td class="characteristic">Количество передач</td>
+                        <td>6 / 10</td>
+                        <td>10</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td class="characteristic">Габариты (Д×Ш×В), мм</td>
+                        <td>4784×1897×1348</td>
+                        <td>5352×2060×1923</td>
+                        <td>4166×1765×1593</td>
+                    </tr>
+                    <tr>
+                        <td class="characteristic">Объем багажника, л</td>
+                        <td>379</td>
+                        <td><mark>722 (макс. 3078)</mark></td>
+                        <td>478 (макс. 1601)</td>
+                    </tr>
+                    <tr>
+                        <td class="characteristic">Системы безопасности</td>
+                        <td>ABS, ESP, 6 подушек безопасности</td>
+                        <td>ABS, ESP, 8 подушек безопасности</td>
+                        <td>ABS, ESP, 10 подушек безопасности</td>
+                    </tr>
+                    <tr>
+                        <td class="characteristic">Рейтинг краш-тестов</td>
+                        <td>NHTSA: 5 звезд</td>
+                        <td>IIHS: Good</td>
+                        <td><mark>IIHS: Top Safety Pick</mark></td>
+                    </tr>
+                    <tr>
+                        <td class="characteristic">Разгон до 100 км/ч, с</td>
+                        <td><mark>5.1 - 6.2</mark></td>
+                        <td>7.1</td>
+                        <td>6.5</td>
+                    </tr>
+                    <tr>
+                        <td class="characteristic">Максимальная скорость, км/ч</td>
+                        <td>250</td>
+                        <td>180</td>
+                        <td>145</td>
+                    </tr>
+                    <tr>
+                        <td class="characteristic">Начальная цена, $</td>
+                        <td>25,000</td>
+                        <td>50,000</td>
+                        <td>26,500</td>
+                    </tr>
+                    <tr>
+                        <td class="characteristic">Wi-Fi и Bluetooth</td>
+                        <td>Есть</td>
+                        <td>Есть</td>
+                        <td>Есть</td>
+                    </tr>
+                    <tr>
+                        <td class="characteristic">Тормозная система</td>
+                        <td>Дисковые (вентилируемые)</td>
+                        <td>Дисковые (вентилируемые)</td>
+                        <td>Дисковые (вентилируемые)</td>
+                    </tr>
+                    <tr>
+                        <td class="characteristic">Системы предотвращения столкновений</td>
+                        <td>Есть</td>
+                        <td>Есть</td>
+                        <td>Есть</td>
+                    </tr>
+                    <tr>
+                        <td class="characteristic">Гарантийный срок</td>
+                        <td>3 года / 60,000 км</td>
+                        <td>3 года / 60,000 км</td>
+                        <td><mark>8 лет / 160,000 км (батарея)</mark></td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="4" style="text-align: center; font-style: italic;">
+                            *Данные актуальны на 2024 год для рынка США
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+            
+            <div class="details-container">
+                <div class="car-details">
+                    <h3>Chevrolet Camaro</h3>
+                    <details>
+                        <summary>О модели</summary>
+                        <p>Легендарный американский маслкар, предлагающий высокую производительность по доступной цене. Доступен с различными двигателями от экономичного турбо до мощного V8.</p>
+                    </details>
+                    
+                    <details>
+                        <summary>Особенности</summary>
+                        <p>Спортивная подвеска, агрессивный дизайн, современные технологии подключения и высокий уровень настраиваемости.</p>
+                    </details>
+                </div>
+                
+                <div class="car-details">
+                    <h3>Chevrolet Tahoe</h3>
+                    <details>
+                        <summary>О модели</summary>
+                        <p>Полноразмерный внедорожник, предлагающий просторный салон на 8-9 пассажиров и мощные двигатели для буксировки и перевозки грузов.</p>
+                    </details>
+                    
+                    <details>
+                        <summary>Особенности</summary>
+                        <p>Вместительный багажник, современные системы безопасности, роскошная отделка в топовых комплектациях и отличные возможности для бездорожья.</p>
+                    </details>
+                </div>
+                
+                <div class="car-details">
+                    <h3>Chevrolet Bolt EV</h3>
+                    <details>
+                        <summary>О модели</summary>
+                        <p>Компактный электрический хэтчбек, предлагающий практичность и экономичность. Один из самых доступных электромобилей на рынке.</p>
+                    </details>
+                    
+                    <details>
+                        <summary>Особенности</summary>
+                        <p>Запас хода до 417 км, быстрая зарядка, просторный салон для своего класса и низкие эксплуатационные расходы.</p>
+                    </details>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>&copy;2025. Лабораторная работа №2-3. Все права защищены.</p>
+            <p>Студент: Вашемирская А.С. | Группа: УИР-1</p>
+        </footer>
+    </div>
+</body>
+</html>

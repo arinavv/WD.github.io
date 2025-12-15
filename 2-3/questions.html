@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вопросы и ответы</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a2a3a, #0d1b2a);
+            color: #e0e1dd;
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            padding: 30px 0;
+            margin-bottom: 30px;
+            background: rgba(13, 27, 42, 0.8);
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+            border: 1px solid #415a77;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: #ffffff;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.7);
+        }
+        
+        h2 {
+            font-size: 1.8rem;
+            margin: 25px 0 15px;
+            color: #ffffff;
+            border-bottom: 2px solid #415a77;
+            padding-bottom: 8px;
+        }
+        
+        .back-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #576266, #13103d);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+            border: 2px solid #ffffff;
+        }
+        
+        .back-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 77, 230, 0.6);
+            background: linear-gradient(135deg, #576266, #13103d);
+        }
+        
+        .question-container {
+            background: rgba(13, 27, 42, 0.8);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+            border: 1px solid #415a77;
+        }
+        
+        .question {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #ffffff;
+            margin-bottom: 15px;
+            padding-left: 10px;
+            border-left: 4px solid #8fffc7;
+        }
+        
+        .answer {
+            background: rgba(26, 42, 58, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border-left: 4px solid #415a77;
+        }
+        
+        .code-block {
+            background: #1e1e1e;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            border: 1px solid #415a77;
+        }
+        
+        code {
+            color: #8fffc7;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .highlight {
+            color: #8fffc7;
+            font-weight: bold;
+        }
+        
+        .note {
+            background: rgba(143, 255, 199, 0.1);
+            border-left: 4px solid #8fffc7;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        ul, ol {
+            padding-left: 25px;
+            margin: 15px 0;
+        }
+        
+        li {
+            margin-bottom: 8px;
+        }
+        
+        .formats-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 15px 0;
+        }
+        
+        .format-item {
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+        }
+        
+        .supported {
+            background: rgba(143, 255, 199, 0.2);
+            border: 1px solid #8fffc7;
+        }
+        
+        .unsupported {
+            background: rgba(255, 107, 107, 0.2);
+            border: 1px solid #ff6b6b;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 25px;
+            margin-top: 40px;
+            background: rgba(13, 27, 42, 0.8);
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+            border: 1px solid #415a77;
+            color: #b0bec5;
+        }
+        
+        .question-number {
+            display: inline-block;
+            background: #8fffc7;
+            color: #0d1b2a;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 35px;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .back-btn {
+                padding: 10px 20px;
+                font-size: 1rem;
+            }
+            
+            .question-container {
+                padding: 15px;
+            }
+            
+            .formats-list {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .format-item {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Контрольные вопросы</h1>
+            <p>Лабораторная работа №2</p>
+            
+            <a href="index.html" class="back-btn">
+                ← Вернуться к сравнению автомобилей
+            </a>
+        </header>
+        
+        <!-- Вопрос 1 -->
+        <div class="question-container">
+            <div class="question">
+                <span class="question-number">1</span>
+                Структура базового HTML-документа и какие теги обязательно должны быть включены в него?
+            </div>
+            <div class="answer">
+                <p><strong>Обязательные теги:</strong></p>
+                <div class="code-block">
+                    <code>&lt;!DOCTYPE html&gt;<br>
+&lt;html&gt;<br>
+&lt;head&gt;<br>
+    &lt;meta charset="UTF-8"&gt;<br>
+    &lt;title&gt;Название страницы&lt;/title&gt;<br>
+&lt;/head&gt;<br>
+&lt;body&gt;<br>
+    Содержимое страницы<br>
+&lt;/body&gt;<br>
+&lt;/html&gt;</code>
+                </div>
+                
+                <p><strong>Минимальная структура:</strong></p>
+                <ul>
+                    <li><span class="highlight">&lt;!DOCTYPE html&gt;</span> - объявление типа документа</li>
+                    <li><span class="highlight">&lt;html&gt;</span> - корневой элемент</li>
+                    <li><span class="highlight">&lt;head&gt;</span> - служебная информация</li>
+                    <li><span class="highlight">&lt;title&gt;</span> - заголовок страницы</li>
+                    <li><span class="highlight">&lt;body&gt;</span> - видимое содержимое</li>
+                </ul>
+                
+                <div class="note">
+                    <strong>Примечание:</strong> Тег &lt;meta charset="UTF-8"&gt; также рекомендуется включать для корректного отображения символов.
+                </div>
+            </div>
+        </div>
+        
+        <!-- Вопрос 2 -->
+        <div class="question-container">
+            <div class="question">
+                <span class="question-number">2</span>
+                Какой формат изображений нельзя использовать для размещения на HTML странице: JPEG, PNG, GIF, RAW, SVG, WEBP?
+            </div>
+            <div class="answer">
+                <p><span class="highlight">RAW</span> - этот формат нельзя использовать для размещения на HTML-странице.</p>
+                
+                <p><strong>Причина:</strong> Браузеры не поддерживают отображение RAW-файлов (сырые данные с матрицы фотоаппарата).</p>
+                
+                <p><strong>Поддерживаемые форматы:</strong></p>
+                <div class="formats-list">
+                    <div class="format-item supported">JPEG</div>
+                    <div class="format-item supported">PNG</div>
+                    <div class="format-item supported">GIF</div>
+                    <div class="format-item unsupported">RAW</div>
+                    <div class="format-item supported">SVG</div>
+                    <div class="format-item supported">WEBP</div>
+                </div>
+                
+                <div class="note">
+                    <strong>Информация:</strong> SVG (Scalable Vector Graphics) — векторный формат, остальные — растровые форматы.
+                </div>
+            </div>
+        </div>
+        
+        <!-- Вопрос 3 -->
+        <div class="question-container">
+            <div class="question">
+                <span class="question-number">3</span>
+                На какой версии языка программирования HTML Вы писали лабораторную работу №1?
+            </div>
+            <div class="answer">
+                <p><span class="highlight">HTML5</span></p>
+                <p>HTML5 — это пятая и текущая основная версия языка разметки HTML. Она была выпущена в 2014 году и включает множество новых семантических элементов, API для сложных веб-приложений и улучшенную поддержку мультимедиа.</p>
+                
+                <div class="code-block">
+                    <code>&lt;!DOCTYPE html&gt; &lt;!-- Объявление HTML5 --&gt;<br>
+&lt;html lang="ru"&gt; &lt;!-- Атрибут lang для указания языка --&gt;<br>
+&lt;head&gt;<br>
+    &lt;meta charset="UTF-8"&gt;<br>
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;<br>
+    &lt;title&gt;Мой сайт&lt;/title&gt;<br>
+&lt;/head&gt;</code>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Вопрос 4 -->
+        <div class="question-container">
+            <div class="question">
+                <span class="question-number">4</span>
+                Какой тег в HTML используется для вставки разрыва строки?
+            </div>
+            <div class="answer">
+                <p><span class="highlight">&lt;br&gt;</span> - тег для переноса строки.</p>
+                
+                <p><strong>Пример использования:</strong></p>
+                <div class="code-block">
+                    <code>&lt;p&gt;Первая строка&lt;br&gt;<br>
+Вторая строка&lt;br&gt;<br>
+Третья строка&lt;/p&gt;</code>
+                </div>
+                
+                <p><strong>Результат:</strong></p>
+                <div style="background: rgba(26, 42, 58, 0.7); padding: 15px; border-radius: 8px; margin: 15px 0; font-family: 'Segoe UI', sans-serif;">
+                    Первая строка<br>
+                    Вторая строка<br>
+                    Третья строка
+                </div>
+                
+                <div class="note">
+                    <strong>Примечание:</strong> Тег &lt;br&gt; является одиночным (самозакрывающимся) тегом и не имеет закрывающего тега. В XHTML пишется как &lt;br /&gt;.
+                </div>
+            </div>
+        </div>
+        
+        <!-- Вопрос 5 -->
+        <div class="question-container">
+            <div class="question">
+                <span class="question-number">5</span>
+                Если Вы написали код страницы в текстовом редакторе или редакторе кода и запустили полученный файл, смогут ли другие пользователи сети Интернет найти её, вставив в поисковую строку её адрес?
+            </div>
+            <div class="answer">
+                <p><span class="highlight">Нет</span>, другие пользователи интернета не смогут найти эту страницу.</p>
+                
+                <p><strong>Причины:</strong></p>
+                <ul>
+                    <li>Страница находится только на вашем локальном компьютере</li>
+                    <li>У нее нет публичного URL-адреса в интернете</li>
+                    <li>Она не размещена на веб-сервере</li>
+                    <li>Поисковые системы не индексируют локальные файлы</li>
+                </ul>
+                
+                <p><strong>Чтобы сделать страницу доступной, нужно:</strong></p>
+                <ol>
+                    <li>Приобрести доменное имя (например: mysite.com)</li>
+                    <li>Арендовать хостинг (веб-сервер)</li>
+                    <li>Загрузить файлы на сервер через FTP или файловый менеджер</li>
+                    <li>Настроить DNS-записи для связи домена с хостингом</li>
+                </ol>
+                
+                <div class="note">
+                    <strong>Альтернатива:</strong> Можно использовать бесплатные хостинги (GitHub Pages, Netlify, Vercel) для размещения статических сайтов без покупки домена и хостинга.
+                </div>
+                
+                <p><strong>Локальный путь vs Веб-адрес:</strong></p>
+                <div class="code-block">
+                    <code>Локальный путь: file:///C:/Users/Имя/Документы/моя_страница.html<br>
+Веб-адрес: https://www.mysite.com/моя_страница.html</code>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>&copy;2025. Вопросы и ответы по HTML. Все права защищены.</p>
+            <p>Студент: Вашемирская А.С. | Группа: УИР-1</p>
+        </footer>
+    </div>
+</body>
+</html>
